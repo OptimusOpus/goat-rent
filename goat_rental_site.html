@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Goat Patrol Rentals | Eco-Friendly Goat Grazing</title>
+  <meta name="description" content="Rent hardworking goats for weed control, brush clearing, firebreaks, paddock cleanup, and eco-friendly land maintenance." />
+
+  <!-- Set the saved theme before first paint so there's no light/dark flash on load -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        if (saved === "dark" || saved === "light") {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    :root,
+    [data-theme="light"] {
+      --bg-glow: rgba(240, 180, 76, 0.22);
+      --bg-grad-top: #fffaf0;
+      --bg-grad-bottom: #f6f0df;
+      --card: #ffffff;
+      --surface: #ffffff;
+      --surface-glass: rgba(255, 255, 255, 0.76);
+      --header-bg: rgba(255, 250, 240, 0.82);
+      --input-bg: #fffdf8;
+      --panel: #24311f;
+      --ink: #25311f;
+      --muted: #617052;
+      --brand: #5f8f3a;
+      --brand-dark: #3f6727;
+      --accent: #f0b44c;
+      --soft: #eef7e7;
+      --border: rgba(95, 143, 58, 0.14);
+      --border-strong: rgba(95, 143, 58, 0.24);
+      --shadow: 0 18px 50px rgba(37, 49, 31, 0.14);
+      --radius: 24px;
+    }
+
+    [data-theme="dark"] {
+      --bg-glow: rgba(240, 180, 76, 0.12);
+      --bg-grad-top: #12170e;
+      --bg-grad-bottom: #0d1109;
+      --card: #1d2616;
+      --surface: #1d2616;
+      --surface-glass: rgba(35, 46, 26, 0.6);
+      --header-bg: rgba(18, 23, 14, 0.82);
+      --input-bg: #161c10;
+      --panel: #243018;
+      --ink: #eef3e6;
+      --muted: #9fb089;
+      --brand: #7cb854;
+      --brand-dark: #93c96d;
+      --accent: #f0b44c;
+      --soft: #25321a;
+      --border: rgba(124, 184, 84, 0.16);
+      --border-strong: rgba(124, 184, 84, 0.28);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease, box-shadow 250ms ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, var(--bg-glow), transparent 34rem),
+        linear-gradient(180deg, var(--bg-grad-top) 0%, var(--bg-grad-bottom) 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 1.12rem;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--brand);
+      color: white;
+      box-shadow: 0 10px 25px rgba(95, 143, 58, 0.25);
+      font-size: 1.35rem;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.94rem;
+    }
+
+    .theme-toggle {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 1.15rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(37, 49, 31, 0.08);
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      border-color: var(--brand);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      background: var(--brand);
+      color: white;
+      font-weight: 800;
+      box-shadow: 0 12px 24px rgba(95, 143, 58, 0.25);
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--brand-dark);
+      box-shadow: 0 18px 34px rgba(95, 143, 58, 0.28);
+    }
+
+    .button.secondary {
+      background: var(--surface);
+      color: var(--brand-dark);
+      box-shadow: inset 0 0 0 2px var(--border-strong);
+    }
+
+    .hero {
+      padding: 80px 0 52px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brand-dark);
+      font-weight: 900;
+      font-size: 0.86rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+    }
+
+    .hero p {
+      margin: 24px 0 0;
+      max-width: 650px;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-card {
+      border-radius: 36px;
+      overflow: hidden;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transform: rotate(1deg);
+    }
+
+    .goat-photo {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(95, 143, 58, 0.1), rgba(240, 180, 76, 0.18)),
+        repeating-linear-gradient(-45deg, transparent 0 18px, rgba(255,255,255,0.35) 18px 36px);
+    }
+
+    .goat-emoji {
+      width: min(310px, 80%);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 42% 58% 44% 56%;
+      background: var(--surface);
+      font-size: 9rem;
+      box-shadow: inset 0 -15px 0 rgba(95, 143, 58, 0.08), 0 20px 40px rgba(37, 49, 31, 0.13);
+    }
+
+    .hero-card-footer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .section-title p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 12px 35px rgba(37, 49, 31, 0.07);
+    }
+
+    .card .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--soft);
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.24rem;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #3b2b0b;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .price-card {
+      position: relative;
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .price-card.featured {
+      background: var(--panel);
+      color: white;
+      transform: translateY(-8px);
+    }
+
+    .price-card.featured p,
+    .price-card.featured li {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .price {
+      font-size: 2.4rem;
+      font-weight: 950;
+      letter-spacing: -0.07em;
+      margin: 12px 0;
+    }
+
+    .price small {
+      font-size: 0.95rem;
+      color: inherit;
+      opacity: 0.72;
+      letter-spacing: normal;
+    }
+
+    ul {
+      padding: 0;
+      margin: 18px 0 0;
+      list-style: none;
+    }
+
+    li {
+      margin: 10px 0;
+      color: var(--muted);
+    }
+
+    li::before {
+      content: "✓";
+      color: var(--brand);
+      font-weight: 950;
+      margin-right: 8px;
+    }
+
+    .cta {
+      background:
+        radial-gradient(circle at top right, rgba(240, 180, 76, 0.3), transparent 28rem),
+        var(--panel);
+      color: white;
+      border-radius: 36px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .cta p {
+      margin: 12px 0 0;
+      color: rgba(255,255,255,0.76);
+      max-width: 680px;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 800;
+      color: var(--ink);
+      font-size: 0.9rem;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      padding: 13px 14px;
+      font: inherit;
+      background: var(--input-bg);
+      color: var(--ink);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 38px 0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .mobile-only { display: none; }
+
+    @media (max-width: 850px) {
+      nav { display: none; }
+      .mobile-only { display: inline-flex; }
+      .hero { padding-top: 50px; }
+      .hero-grid,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+      .cards,
+      .steps,
+      .pricing,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-card {
+        transform: none;
+      }
+      .goat-photo {
+        min-height: 310px;
+      }
+      .goat-emoji {
+        font-size: 6rem;
+      }
+      .price-card.featured {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#top" aria-label="Goat Patrol Rentals home">
+        <span class="logo-mark">🐐</span>
+        <span>Goat Patrol Rentals</span>
+      </a>
+      <div class="nav-right">
+        <nav aria-label="Main navigation">
+          <a href="#services">Services</a>
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#quote" class="button">Get a quote</a>
+        </nav>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">🌙</button>
+        <a href="#quote" class="button mobile-only">Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">🌱 Weed control, but make it adorable</div>
+          <h1>Rent goats for clean, green land clearing.</h1>
+          <p>
+            Our friendly herd tackles weeds, long grass, brush, blackberry, firebreaks, and paddock cleanup without noisy machinery or harsh chemicals.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#quote">Book the herd</a>
+            <a class="button secondary" href="#services">See what goats can do</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Goat rental highlights">
+          <div class="goat-photo">
+            <div class="goat-emoji" role="img" aria-label="Goat">🐐</div>
+          </div>
+          <div class="hero-card-footer">
+            <div class="stat">
+              <strong>0</strong>
+              <span>Chemicals</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>Goat-powered</span>
+            </div>
+            <div class="stat">
+              <strong>Lots</strong>
+              <span>Of cute</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>What our goats are good at</h2>
+          <p>Perfect for residential blocks, hobby farms, acreage, councils, schools, parks, orchards, and anywhere that needs careful grazing.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">🌿</div>
+            <h3>Weed & brush control</h3>
+            <p>Goats love the stuff most mowers hate: woody weeds, overgrowth, invasive plants, and awkward slopes.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🔥</div>
+            <h3>Firebreak grazing</h3>
+            <p>Reduce fuel load around fences, sheds, tracks, and property boundaries before hot, dry weather.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🏡</div>
+            <h3>Backyard cleanup</h3>
+            <p>A tidy, low-noise alternative for overgrown yards, vacant lots, and small paddocks.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-title">
+          <h2>How it works</h2>
+          <p>We make goat rental simple: you show us the land, we bring the herd, and the goats get to work.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <h3>Send photos</h3>
+            <p>Tell us the address, land size, access, fences, and what needs eating.</p>
+          </article>
+          <article class="step">
+            <h3>Get a plan</h3>
+            <p>We recommend herd size, duration, temporary fencing, water, and supervision needs.</p>
+          </article>
+          <article class="step">
+            <h3>Goats arrive</h3>
+            <p>We deliver the goats, set up the area, and make sure everyone is safe and happy.</p>
+          </article>
+          <article class="step">
+            <h3>Land clears</h3>
+            <p>The herd grazes through the target area while fertilising the soil naturally.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-title">
+          <h2>Simple starting packages</h2>
+          <p>Use these as placeholder prices. Update them to match your actual service area, transport costs, and herd size.</p>
+        </div>
+
+        <div class="pricing">
+          <article class="price-card">
+            <h3>Small Yard</h3>
+            <p>For backyards and small lots.</p>
+            <div class="price">$249 <small>from</small></div>
+            <ul>
+              <li>Half-day visit</li>
+              <li>Small herd</li>
+              <li>Basic setup</li>
+              <li>Great for light weeds</li>
+            </ul>
+          </article>
+
+          <article class="price-card featured">
+            <h3>Acreage Patrol</h3>
+            <p>Best for most rural blocks.</p>
+            <div class="price">$599 <small>from</small></div>
+            <ul>
+              <li>1–3 day grazing plan</li>
+              <li>Temporary fencing</li>
+              <li>Medium herd</li>
+              <li>Brush and long grass</li>
+            </ul>
+          </article>
+
+          <article class="price-card">
+            <h3>Custom Herd</h3>
+            <p>For councils, farms, and big jobs.</p>
+            <div class="price">Quote</div>
+            <ul>
+              <li>Large herd options</li>
+              <li>Multi-week grazing</li>
+              <li>Firebreak planning</li>
+              <li>Site inspection available</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container cta">
+        <div>
+          <h2>Ready to unleash the goats?</h2>
+          <p>Tell us about your block and we’ll suggest the right herd size, timing, and setup.</p>
+        </div>
+        <a class="button" href="#quote">Request a quote</a>
+      </div>
+    </section>
+
+    <section id="quote">
+      <div class="container">
+        <div class="section-title">
+          <h2>Request a goat rental quote</h2>
+          <p>This demo form opens the visitor’s email app. Replace the email address with yours before publishing.</p>
+        </div>
+
+        <form action="mailto:hello@goatpatrol.example?subject=Goat%20rental%20quote%20request" method="post" enctype="text/plain">
+          <div class="form-grid">
+            <label>
+              Name
+              <input name="name" placeholder="Jane Farmer" required />
+            </label>
+            <label>
+              Phone
+              <input name="phone" placeholder="0400 000 000" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Property size
+              <select name="property_size">
+                <option>Small backyard</option>
+                <option>Suburban block</option>
+                <option>1–5 acres</option>
+                <option>5+ acres</option>
+                <option>Commercial or council site</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            What do you need cleared?
+            <textarea name="details" placeholder="Tell us about weeds, long grass, access, fencing, water, pets, and any photos you can send."></textarea>
+          </label>
+          <button class="button" type="submit">Email my request</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Goat Patrol Rentals. Eco-friendly grazing for happier land.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById("theme-toggle");
+
+      function syncToggle() {
+        var isDark = root.getAttribute("data-theme") === "dark";
+        toggle.textContent = isDark ? "☀️" : "🌙";
+        toggle.setAttribute("aria-pressed", String(isDark));
+        toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+      }
+
+      toggle.addEventListener("click", function () {
+        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        syncToggle();
+      });
+
+      syncToggle();
+    })();
+  </script>
+</body>
+</html>
